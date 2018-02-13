@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 
         Meta.logLevel = .debug
-        Meta.configure(withKey: "api-pub-2c195eff2b08807f0796a473fa68a7f358a4c5740f5f1f10")
+        Meta.configure(withKey: "api-test-7bc6df9bf5ec8aaf477d4b0bc5a57138a9b5dd45cf9df1e7")
 
         return true
     }
