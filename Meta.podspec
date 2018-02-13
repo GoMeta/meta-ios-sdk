@@ -11,6 +11,7 @@ TODO: Add long description of the pod here.
   s.author           = { 'Sean Thielen' => 'sean@p27.us' }
 
   s.platform         = :ios, "9.3"
+  s.swift_version    = '4.0'
   s.source           = { :git => "https://github.com/GoMeta/meta-ios-sdk.git", :tag => "#{s.version}" }
 
   s.ios.vendored_frameworks = 'Meta.framework'

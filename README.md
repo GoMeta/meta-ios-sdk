@@ -1,8 +1,8 @@
+![Meta iOS SDK](logo.png?raw=true "Meta iOS SDK")
+
 # Meta iOS SDK
 
-## Getting Started
-
-The Meta iOS SDK allows you to render Metaverse experiences inside of your own app or framework. Build, test, and iterate with Metaverse Studio and Metaverse Browser, and then render in your own app.
+Render [Metaverse](https://gometa.io) experiences inside of your own app or framework. Build, test, and iterate with Metaverse Studio and Metaverse Browser, and then render in your own app.
 
 [**Full Documentation**]()
 
@@ -38,7 +38,7 @@ end
 Then, run the following command:
 
 ```bash
-$ pod install
+$ pod install --repo-update
 ```
 
 ## Initialize SDK

@@ -1,0 +1,9 @@
+source "https://github.com/CocoaPods/Specs.git"
+source "https://github.com/GoMeta/meta-ios-pods"
+
+platform :ios, "9.3"
+use_frameworks!
+
+target 'MetaXCX' do
+  pod 'Meta'
+end

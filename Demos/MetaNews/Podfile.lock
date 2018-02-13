@@ -1,0 +1,53 @@
+PODS:
+  - Alamofire (4.6.0)
+  - AWSCore (2.6.12)
+  - AWSS3 (2.6.12):
+    - AWSCore (= 2.6.12)
+  - GoogleToolboxForMac/Defines (2.1.3)
+  - GoogleToolboxForMac/Logger (2.1.3):
+    - GoogleToolboxForMac/Defines (= 2.1.3)
+  - GTMSessionFetcher/Core (1.1.13)
+  - GVRSDK-Wrapper (0.0.9):
+    - GoogleToolboxForMac/Logger
+    - GTMSessionFetcher/Core
+  - iCarousel (1.8.3)
+  - Kingfisher (4.6.1)
+  - Meta (0.0.1):
+    - Alamofire (~> 4.0)
+    - AWSS3
+    - GVRSDK-Wrapper
+    - iCarousel
+    - Kingfisher (~> 4.0)
+    - pop
+    - SwiftyJSON
+    - XCDYouTubeKit (~> 2.5)
+    - ZCAnimatedLabel
+    - Zip
+  - pop (1.0.10)
+  - SwiftyJSON (4.0.0)
+  - XCDYouTubeKit (2.5.6)
+  - ZCAnimatedLabel (0.0.4)
+  - Zip (1.1.0)
+
+DEPENDENCIES:
+  - Meta
+
+SPEC CHECKSUMS:
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  AWSCore: d0d6e4f6831754aaf98058d2306a016ae71510fe
+  AWSS3: c35608e0cdd5172f9e1d943221fd5fde01c5f749
+  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
+  GTMSessionFetcher: 5bb1eae636127de695590f50e7d248483eb891e6
+  GVRSDK-Wrapper: 3fd693ecc7cf31ebda1f3e88b3f65d62ac6713ca
+  iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
+  Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
+  Meta: 6b7d864f4603324a282d536a17f78c2defc9dc4a
+  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  XCDYouTubeKit: dccfe0c17dd5c5187969ec27e93069573badb08f
+  ZCAnimatedLabel: 519b688bef4403fd356bc785f9b61cdfd8e6472d
+  Zip: 8877eede3dda76bcac281225c20e71c25270774c
+
+PODFILE CHECKSUM: b140208d4a967509acd57e58156abc830f1d36e6
+
+COCOAPODS: 1.4.0
