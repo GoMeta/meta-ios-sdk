@@ -4,7 +4,7 @@
 
 Render [Metaverse](https://gometa.io) experiences inside of your own app or framework. Build, test, and iterate with Metaverse Studio and Metaverse Browser, and then render in your own app.
 
-[**Full Documentation**]()
+[**Full Documentation**](https://gometa.github.io/meta-ios-sdk/Classes/Meta.html)
 
 ## Prerequisites
 
@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     	// Initialize the Meta SDK
-        Meta.configure(withKey: "api-pub-xxxxxxx")
+        Meta.configure(withKey: "api-test-xxxxxxx")
 
         return true
     }
