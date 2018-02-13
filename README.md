@@ -9,7 +9,8 @@ Render [Metaverse](https://gometa.io) experiences inside of your own app or fram
 ## Prerequisites
 
 - Target iOS 9.3 or higher
-- Create a Metaverse account and log in to [Metaverse Studio](https://studio.gometa.io).
+- Create a Metaverse account and log in to [Metaverse Studio](https://studio.gometa.io)
+- Install [`git-lfs`](https://git-lfs.github.com/)
 
 ## Installation
 
