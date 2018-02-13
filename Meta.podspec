@@ -1,14 +1,14 @@
 Pod::Spec.new do |s|
   s.name             = 'Meta'
-  s.version          = '0.0.1'
-  s.summary          = 'A short description of Meta.'
+  s.version          = '0.0.2'
+  s.summary          = 'Render Metaverse Experiences in your own apps.'
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+Render Metaverse experiences inside of your own app or framework. Build, test, and iterate with Metaverse Studio and Metaverse Browser, and then render in your own app.
                        DESC
 
-  s.homepage         = 'https://github.com/Sean Thielen/Meta'
+  s.homepage         = 'https://gometa.github.io/meta-ios-sdk/Classes/Meta.html'
   s.license          = { :type => 'Custom', :text => 'Copyright 2018 GoMeta' }
-  s.author           = { 'Sean Thielen' => 'sean@p27.us' }
+  s.author           = { 'Sean Thielen' => 'sean@gometa.io' }
 
   s.platform         = :ios, "9.3"
   s.swift_version    = '4.0'
