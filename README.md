@@ -42,6 +42,19 @@ Then, run the following command:
 $ pod install --repo-update
 ```
 
+## Configure App Privacy Settings
+
+Metaverse experiences depend heavily on access to the Camera and device motion. Camera scenes that record video also require access to the microphone. Make sure your app's `Info.plist` file contains the following:
+
+```xml
+<key>NSCameraUsageDescription</key>
+<string>Use your camera to experience augmented reality</string>
+<key>NSMicrophoneUsageDescription</key>
+<string>Use your microphone to record audio</string>
+<key>NSMotionUsageDescription</key>
+<string>Use device motion to experience augmented reality</string>
+```
+
 ## Initialize SDK
 
 Before loading any experience, apps must initialize Meta by calling `Meta.configure(withKey: "API_KEY")`. This should be done once, ideally from within your Application Delegate's `didFinishLaunchingWithOptions` method. You can find your API keys in Metaverse Studio on the [SDK Page](https://studio.gometa.io/sdk/keys).
