@@ -126,6 +126,7 @@ Note that, at this time, if you are unable to identify a user, or choose not to,
 ## Common issues
 
 **Scene backgrounds not loading**
+
 If a scene background references an image, iOS will block loading of that image unless it is served from an https URL. To allow loading of insecure images in scene backgrounds, you need to make sure your `Info.plist` contains the following:
 
 ```xml
