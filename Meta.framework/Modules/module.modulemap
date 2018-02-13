@@ -1,0 +1,11 @@
+framework module Meta {
+  umbrella header "Meta.h"
+
+  export *
+  module * { export * }
+}
+
+module Meta.Swift {
+    header "Meta-Swift.h"
+    requires objc
+}
