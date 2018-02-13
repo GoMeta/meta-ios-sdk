@@ -123,6 +123,19 @@ This method only needs to be invoked once. It writes the user’s identification
 
 Note that, at this time, if you are unable to identify a user, or choose not to, all Metaverse activity within your app will appear to be coming from the account associated with your API key. This is fine for testing, but might lead to collisions and weird things when dealing with items and user properties in production. We recommend at least identifying a user with a randomly generated UUID.
 
+## Common issues
+
+**Scene backgrounds not loading**
+If a scene background references an image, iOS will block loading of that image unless it is served from an https URL. To allow loading of insecure images in scene backgrounds, you need to make sure your `Info.plist` contains the following:
+
+```xml
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+</dict>
+```
+
 ## Sample Apps
 
 The `Demo` folder of this repository contains four sample apps. Watch the [preview video](https://www.youtube.com/watch?v=yJdRIZD6N04) to see them in action.
