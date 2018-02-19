@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Meta'
-  s.version          = '0.0.2'
+  s.version          = '0.0.3'
   s.summary          = 'Render Metaverse Experiences in your own apps.'
   s.description      = <<-DESC
 Render Metaverse experiences inside of your own app or framework. Build, test, and iterate with Metaverse Studio and Metaverse Browser, and then render in your own app.
@@ -39,7 +39,6 @@ Render Metaverse experiences inside of your own app or framework. Build, test, a
   s.dependency "SwiftyJSON"
   s.dependency "iCarousel"
   s.dependency 'Kingfisher', '~> 4.0'
-  s.dependency 'pop'
   s.dependency 'Zip'
   s.dependency "XCDYouTubeKit", "~> 2.5"
   s.dependency 'ZCAnimatedLabel'
