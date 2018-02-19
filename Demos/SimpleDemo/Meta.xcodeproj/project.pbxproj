@@ -255,7 +255,6 @@
 				"${BUILT_PRODUCTS_DIR}/ZCAnimatedLabel/ZCAnimatedLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/Zip/Zip.framework",
 				"${BUILT_PRODUCTS_DIR}/iCarousel/iCarousel.framework",
-				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -272,7 +271,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZCAnimatedLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Zip.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iCarousel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -456,7 +454,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/ZCAnimatedLabel\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Zip\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/iCarousel\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/pop\"",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Meta/Info.plist;
@@ -511,8 +508,6 @@
 					"\"Zip\"",
 					"-framework",
 					"\"iCarousel\"",
-					"-framework",
-					"\"pop\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.demo.MetaSimpleDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -586,8 +581,6 @@
 					"\"Zip\"",
 					"-framework",
 					"\"iCarousel\"",
-					"-framework",
-					"\"pop\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.demo.MetaSimpleDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
