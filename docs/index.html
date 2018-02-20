@@ -33,6 +33,9 @@
               <li class="nav-group-task">
                 <a href="Classes/Meta.html">Meta</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Classes/MetaSettings.html">MetaSettings</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -43,6 +46,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums/MetaLogLevel.html">MetaLogLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/MetaRenderingEngine.html">MetaRenderingEngine</a>
               </li>
             </ul>
           </li>
@@ -58,6 +64,9 @@
             <a href="Structs.html">Structures</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Structs/MetaConfigurationObject.html">MetaConfigurationObject</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Structs/MetaExperience.html">MetaExperience</a>
               </li>
             </ul>
@@ -68,15 +77,147 @@
         <section>
           <section class="section">
             
-            <h1 id='meta' class='heading'>Meta</h1>
-<h3 id='authors' class='heading'>Authors</h3>
+            <p><img src="logo.png?raw=true" alt="Meta iOS SDK" title="Meta iOS SDK"></p>
+<h1 id='meta-ios-sdk' class='heading'>Meta iOS SDK</h1>
 
-<p>GoMeta</p>
+<p>Render <a href="https://gometa.io">Metaverse</a> experiences inside of your own app or framework. Build, test, and iterate with Metaverse Studio and Metaverse Browser, and then render in your own app.</p>
+
+<p><a href="https://gometa.github.io/meta-ios-sdk/Classes/Meta.html"><strong>Full Documentation</strong></a></p>
+<h2 id='prerequisites' class='heading'>Prerequisites</h2>
+
+<ul>
+<li>Target iOS 9.3 or higher</li>
+<li>Create a Metaverse account and log in to <a href="https://studio.gometa.io">Metaverse Studio</a></li>
+<li>Install <a href="https://git-lfs.github.com/"><code>git-lfs</code></a></li>
+</ul>
+<h2 id='installation' class='heading'>Installation</h2>
+<h3 id='cocoapods' class='heading'>CocoaPods</h3>
+
+<p><a href="http://cocoapods.org">CocoaPods</a> is required to install Meta. Install Cocoapods with the following command:</p>
+<pre class="highlight shell"><code><span class="nv">$ </span>gem <span class="nb">install </span>cocoapods
+</code></pre>
+
+<p>To integrate Meta into your Xcode project using CocoaPods, specify it in your <code>Podfile</code>. Note that you must include the GoMeta private spec repo in your Podfile to install Meta.</p>
+<pre class="highlight ruby"><code><span class="n">source</span> <span class="s1">'https://github.com/CocoaPods/Specs.git'</span>
+<span class="n">source</span> <span class="s1">'https://github.com/GoMeta/meta-ios-pods'</span>
+
+<span class="n">platform</span> <span class="ss">:ios</span><span class="p">,</span> <span class="s1">'9.3'</span>
+<span class="n">use_frameworks!</span>
+
+<span class="n">target</span> <span class="s1">'&lt;Your Target Name&gt;'</span> <span class="k">do</span>
+    <span class="n">pod</span> <span class="s1">'Meta'</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Then, run the following command:</p>
+<pre class="highlight shell"><code><span class="nv">$ </span>pod <span class="nb">install</span> <span class="nt">--repo-update</span>
+</code></pre>
+<h2 id='configure-app-privacy-settings' class='heading'>Configure App Privacy Settings</h2>
+
+<p>Metaverse experiences depend heavily on access to the Camera and device motion. Camera scenes that record video also require access to the microphone. Make sure your app&rsquo;s <code>Info.plist</code> file contains the following:</p>
+<pre class="highlight xml"><code><span class="nt">&lt;key&gt;</span>NSCameraUsageDescription<span class="nt">&lt;/key&gt;</span>
+<span class="nt">&lt;string&gt;</span>Use your camera to experience augmented reality<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;key&gt;</span>NSMicrophoneUsageDescription<span class="nt">&lt;/key&gt;</span>
+<span class="nt">&lt;string&gt;</span>Use your microphone to record audio<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;key&gt;</span>NSMotionUsageDescription<span class="nt">&lt;/key&gt;</span>
+<span class="nt">&lt;string&gt;</span>Use device motion to experience augmented reality<span class="nt">&lt;/string&gt;</span>
+</code></pre>
+<h2 id='initialize-sdk' class='heading'>Initialize SDK</h2>
+
+<p>Before loading any experience, apps must initialize Meta by calling <code>Meta.configure(withKey: &quot;API_KEY&quot;)</code>. This should be done once, ideally from within your Application Delegate&rsquo;s <code>didFinishLaunchingWithOptions</code> method. You can find your API keys in Metaverse Studio on the <a href="https://studio.gometa.io/sdk/keys">SDK Page</a>.</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">Meta</span>
+<span class="o">...</span>
+
+<span class="kd">@UIApplicationMain</span>
+<span class="kd">class</span> <span class="kt">AppDelegate</span><span class="p">:</span> <span class="kt">UIResponder</span><span class="p">,</span> <span class="kt">UIApplicationDelegate</span> <span class="p">{</span>
+
+    <span class="k">var</span> <span class="nv">window</span><span class="p">:</span> <span class="kt">UIWindow</span><span class="p">?</span>
+
+    <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplicationLaunchOptionsKey</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+        <span class="c1">// Initialize the Meta SDK</span>
+        <span class="kt">Meta</span><span class="o">.</span><span class="nf">configure</span><span class="p">(</span><span class="nv">withKey</span><span class="p">:</span> <span class="s">"api-test-xxxxxxx"</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="kc">true</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre>
+<h2 id='present-experience' class='heading'>Present Experience</h2>
+<h3 id='create-an-experience-object' class='heading'>Create an Experience object</h3>
+
+<p>Experiences are managed by <code><a href="Structs/MetaExperience.html">MetaExperience</a></code> objects. Initialize a new object with the experience ID, and optionally the delegate.</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">Meta</span>
+<span class="kd">import</span> <span class="kt">UIKit</span>
+
+<span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
+
+    <span class="k">var</span> <span class="nv">experience</span><span class="p">:</span> <span class="kt">MetaExperience</span><span class="o">!</span>
+
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+
+        <span class="k">self</span><span class="o">.</span><span class="n">experience</span> <span class="o">=</span> <span class="kt">MetaExperience</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="s">"EXPERIENCE_ID"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h3 id='present-the-experience' class='heading'>Present the experience</h3>
+
+<p>Show the experience in response to a user action.</p>
+<pre class="highlight swift"><code><span class="kd">@IBAction</span> <span class="kd">func</span> <span class="nf">doSomething</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">Meta</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">present</span><span class="p">(</span><span class="nv">experience</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">experience</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+<h3 id='use-metaexperiencedelegate-optional' class='heading'>Use MetaExperienceDelegate (optional)</h3>
+
+<p>If you want to be notified when an experience closes (for example, to only reward a user if they have completed the entire experience), implement <code><a href="Protocols/MetaExperienceDelegate.html">MetaExperienceDelegate</a></code>. Be sure to set the delegate property on your <code><a href="Structs/MetaExperience.html">MetaExperience</a></code> object (<code>self.experience.delegate = self</code>).</p>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">MetaExperienceDelegate</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">metaExperienceDidClose</span><span class="p">(</span><span class="n">withReason</span> <span class="nv">reason</span><span class="p">:</span> <span class="kt">MetaExperienceCloseReason</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">reason</span> <span class="o">==</span> <span class="o">.</span><span class="n">completion</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// Do something if the user completed the experience</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// The user manually closed the experience</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h2 id='identifying-users' class='heading'>Identifying Users</h2>
+
+<p>If you would like to store persistent user data, use <code>Meta.shared.identify(user: &quot;USER_ID&quot;)</code> to associate your app user with the Meta SDK. Identifying users allows you to do things like save and track user properties across experiences, and to give and request items from users’ inventories.</p>
+
+<p>You can identify a user using some unique piece of information known by your application. For instance, if your app requires accounts, you can invoke this method at the time of sign in and provide your user ID as the argument (or, if you require unique usernames, the username; or another piece of information like phone number or email address) to create a persistent Metaverse account linked to their user profile within your app.</p>
+
+<p>This method only needs to be invoked once. It writes the user’s identification key to your app’s UserDefaults, and references it when loading subsequent experiences.</p>
+
+<p>Note that, at this time, if you are unable to identify a user, or choose not to, all Metaverse activity within your app will appear to be coming from the account associated with your API key. This is fine for testing, but might lead to collisions and weird things when dealing with items and user properties in production. We recommend at least identifying a user with a randomly generated UUID.</p>
+<h2 id='common-issues' class='heading'>Common issues</h2>
+
+<p><strong>Scene backgrounds not loading</strong></p>
+
+<p>If a scene background references an image, iOS will block loading of that image unless it is served from an https URL. To allow loading of insecure images in scene backgrounds, you need to make sure your <code>Info.plist</code> contains the following:</p>
+<pre class="highlight xml"><code><span class="nt">&lt;key&gt;</span>NSAppTransportSecurity<span class="nt">&lt;/key&gt;</span>
+<span class="nt">&lt;dict&gt;</span>
+    <span class="nt">&lt;key&gt;</span>NSAllowsArbitraryLoads<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;true/&gt;</span>
+<span class="nt">&lt;/dict&gt;</span>
+</code></pre>
+<h2 id='sample-apps' class='heading'>Sample Apps</h2>
+
+<p>The <code>Demo</code> folder of this repository contains four sample apps. Watch the <a href="https://www.youtube.com/watch?v=yJdRIZD6N04">preview video</a> to see them in action.</p>
+
+<ul>
+<li><strong>SimpleDemo</strong> shows how to launch an experience in response to a button press.</li>
+<li><strong>MetaNews</strong> is a simple news reader that shows how display ads can render Metaverse experiences.</li>
+<li><strong>FlappyMeta</strong> shows how Metaverse experiences can be used as Rewarded Interactive Ads inside of a game, requiring a user to complete an experience in order to keep playing.</li>
+<li><strong>MetaXCX</strong> shows how apps can mix native content and embedded Metaverse experiences.</li>
+</ul>
+<h2 id='extras' class='heading'>Extras</h2>
+
+<p>If you create something awesome, we&rsquo;d love to see it and feature it here! Create a PR on this Readme to add your project, or let us know about it via email (<a href="mailto:support@gometa.io">support@gometa.io</a>) or Facebook/Twitter.</p>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://gometa.io" target="_blank" rel="external">GoMeta</a>. All rights reserved. (Last updated: 2018-02-12)</p>
+          <p>&copy; 2018 <a class="link" href="https://gometa.io" target="_blank" rel="external">GoMeta</a>. All rights reserved. (Last updated: 2018-02-19)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
