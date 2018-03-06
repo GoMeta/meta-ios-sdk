@@ -136,6 +136,16 @@ This method only needs to be invoked once. It writes the user’s identification
 
 Note that, at this time, if you are unable to identify a user, or choose not to, all Metaverse activity within your app will appear to be coming from the account associated with your API key. This is fine for testing, but might lead to collisions and weird things when dealing with items and user properties in production. We recommend at least identifying a user with a randomly generated UUID.
 
+## Submitting to the App Store
+
+The Meta SDK collects the IDFA, if advertising tracking is enabled by the user, in order to aggregate analytics data and share impression data with our content partners (e.g., Google Poly, Gfycat Stickers, etc.). When you submit your app to the app store, be sure to check the following boxes under the "Does this app use the Advertising Identifier (IDFA)?"" section:
+
+- "Attribute this app installation to a previously served advertisement"
+- "Attribute an action taken within this app to a previously served advertisement"
+- "I, YOUR_NAME, confirm that this app, and any third party...""
+
+**Note, you should not check the box labeled “Serve advertisements within the app” unless you are actually going to display ads.**
+
 ## Common issues
 
 **Scene backgrounds not loading**
