@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Meta'
-  s.version          = '0.0.25'
+  s.version          = '0.0.26'
   s.summary          = 'Render Metaverse Experiences in your own apps.'
   s.description      = <<-DESC
 Render Metaverse experiences inside of your own app or framework. Build, test, and iterate with Metaverse Studio and Metaverse Browser, and then render in your own app.
@@ -32,6 +32,10 @@ Render Metaverse experiences inside of your own app or framework. Build, test, a
     'CoreMedia',
     'ImageIO',
     'AudioToolbox'
+  ]
+
+  s.weak_frameworks = [
+    'ARKit'
   ]
 
   s.dependency "Alamofire", "~> 4.0"
