@@ -168,6 +168,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 @import UIKit;
 @import Foundation;
 @import CoreGraphics;
+@import ObjectiveC;
 @import SceneKit;
 #endif
 
@@ -217,6 +218,46 @@ SWIFT_CLASS("_TtC4Meta32CHTCollectionViewWaterfallLayout")
 - (UICollectionViewLayoutAttributes * _Nonnull)layoutAttributesForSupplementaryViewOfKind:(NSString * _Nonnull)elementKind atIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
 - (NSArray<UICollectionViewLayoutAttributes *> * _Nullable)layoutAttributesForElementsInRect:(CGRect)rect SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
+/// Class for creating and presenting Metaverse experiences.
+/// Follow the following steps to present a Metaverse experience using this
+/// framework.
+/// <ol>
+///   <li>
+///     Retrieve your API key from https://studio.gometa.io/sdk/keys
+///   </li>
+///   <li>
+///     Use your API key to initialize Meta in your ApplicationDelegate by calling:
+///     <code>Meta.configure(withKey: "API_KEY")</code> in
+///     <code>application(didFinishLaunchingWithOptions:)</code>
+///   </li>
+///   <li>
+///     Create a <code>MetaExperience</code> object with the ID of the experience you want to
+///     load: <code>var experience = MetaExperience(id: "EXPERIENCE_ID")</code>
+///   </li>
+///   <li>
+///     (optional) Set the delegate of the experience if you want to be notified
+///     when the experience is closed: <code>experience.delegate = self</code>
+///   </li>
+///   <li>
+///     Present the experience: <code>Meta.shared.present(experience: experience)</code>
+///   </li>
+/// </ol>
+/// Please report any errors, issues, or suggestions via Github issues.
+SWIFT_CLASS("_TtC4Meta4Meta")
+@interface Meta : NSObject
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+
+
+/// Meta renderer settings
+SWIFT_CLASS("_TtC4Meta12MetaSettings")
+@interface MetaSettings : NSObject
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
