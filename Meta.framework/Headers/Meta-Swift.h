@@ -220,6 +220,9 @@ SWIFT_CLASS("_TtC4Meta32CHTCollectionViewWaterfallLayout")
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds SWIFT_WARN_UNUSED_RESULT;
 @end
 
+enum MetaLogLevel : NSInteger;
+@class MetaConfigurationObject;
+@class MetaExperience;
 
 /// Class for creating and presenting Metaverse experiences.
 /// Follow the following steps to present a Metaverse experience using this
@@ -248,15 +251,153 @@ SWIFT_CLASS("_TtC4Meta32CHTCollectionViewWaterfallLayout")
 /// Please report any errors, issues, or suggestions via Github issues.
 SWIFT_CLASS("_TtC4Meta4Meta")
 @interface Meta : NSObject
+/// Reference to the shared instance of the framework
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) Meta * _Nonnull shared;)
++ (Meta * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
+/// Set the log level of the framework
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class) enum MetaLogLevel logLevel;)
++ (enum MetaLogLevel)logLevel SWIFT_WARN_UNUSED_RESULT;
++ (void)setLogLevel:(enum MetaLogLevel)newValue;
+/// Return whether or not ARKit is supported on the current device
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) BOOL arKitIsSupported;)
++ (BOOL)arKitIsSupported SWIFT_WARN_UNUSED_RESULT;
+/// Start off with an empty configuration object that we’ll mutate later
+@property (nonatomic, strong) MetaConfigurationObject * _Nonnull configuration;
+/// Initializes the framework with your API key. Ideally, this should be done
+/// in your application delegate.
+/// You can find your API key by logging into Metaverse Studio and navigating
+/// to https://studio.gometa.io/sdk/keys
+/// When you are ready to launch your app, you will need to request a
+/// production API key by emailing support@gometa.io
+/// Attempting to load an experience without first initializing this
+/// configuration object will crash the framework.
+/// \param withKey Your API key
+///
++ (void)configureWithKey:(NSString * _Nonnull)key;
+/// Identify a user using some unique piece of information known by your
+/// application. For instance, if your app requires accounts, you can invoke
+/// this method at the time of sign in and provide your user ID as the argument
+/// (or, if you require unique usernames, the username; or another piece of
+/// information like phone number or email address) to create a persistent
+/// Metaverse account linked to their user profile within your app.
+/// Identifying users allows you to do things like save and track user
+/// properties across experiences, and to give and request items from users’
+/// inventories.
+/// This method only needs to be invoked once. It writes the user’s
+/// identification key to your app’s UserDefaults, and references it when
+/// loading subsequent experiences.
+/// Note that, at this time, if you are unable to identify a user, or choose
+/// not to, all Metaverse “activity” within your app will appear to be coming
+/// from the account associated with your API key. This is fine for testing,
+/// but might lead to collisions and weird things when dealing with items
+/// and user properties in production. We recommend at least identifying a
+/// user with a randomly generated UUID.
+/// \param user The piece of unique data to use to identify this user.
+/// This can be any unique string, like a UUID, username, or phone number.
+///
+- (void)identifyWithUser:(NSString * _Nonnull)id;
+/// Present a Metaverse experience. Metaverse experiences are presented on the
+/// application’s current UIWindow, and removed from that window when they are
+/// completed or closed. You should not draw, or attempt to draw, content above
+/// the experience view.
+/// \param experience The Metaverse experience object
+///
+- (void)presentWithExperience:(MetaExperience * _Nonnull)experience;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
 
 
+/// Framework configuration object
+SWIFT_CLASS("_TtC4Meta23MetaConfigurationObject")
+@interface MetaConfigurationObject : NSObject
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+@protocol MetaExperienceDelegate;
+
+/// Struct representing an experience to load. This struct is passed to
+/// Meta.shared.present(experience:) to present an experience.
+SWIFT_CLASS("_TtC4Meta14MetaExperience")
+@interface MetaExperience : NSObject
+/// The MetaExperienceDelegate that receives experience events
+@property (nonatomic, weak) id <MetaExperienceDelegate> _Nullable delegate;
+/// Initialize a new experience to load by its ID. The experience ID is a uuid
+/// that can be found when viewing an experience in Metaverse Studio (e.g., for
+/// an experience with the URL <code>https://studio.gometa.io/discover/me/cff4fbc6-f489-4781-a1db-03e37069b206</code>,
+/// <code>cff4fbc6-f489-4781-a1db-03e37069b206</code> is the experience ID.
+/// Note that, at this time, you CAN NOT use experience short URLs
+/// (https://mtvrs.io/TriangularFlippantHorse) to load experiences.
+/// \param id The ID of the experience to load
+///
+- (nonnull instancetype)initWithId:(NSString * _Nonnull)id OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
+@end
+
+/// Reason why the experience closed
+typedef SWIFT_ENUM(NSInteger, MetaExperienceCloseReason) {
+/// There was a network error that caused the experience to exit
+  MetaExperienceCloseReasonNetworkError = 0,
+/// The user tapped the “close” button, or did not enable required
+/// permissions
+  MetaExperienceCloseReasonUserAction = 1,
+/// The experience completed successfully
+  MetaExperienceCloseReasonCompletion = 2,
+/// The experience closed for an unspecified reason
+  MetaExperienceCloseReasonUnknown = 3,
+};
+
+
+/// This protocol notifies your application of events relating to the current
+/// experience.
+SWIFT_PROTOCOL("_TtP4Meta22MetaExperienceDelegate_")
+@protocol MetaExperienceDelegate
+/// Experience did close.
+/// \param reason The reason the experience was closed. See definition
+/// for MetaExperienceCloseReason for possible values.
+///
+- (void)metaExperienceDidCloseWithReason:(enum MetaExperienceCloseReason)reason;
+@end
+
+/// Logging level. Default is error.
+typedef SWIFT_ENUM(NSInteger, MetaLogLevel) {
+/// Log all debugging information (camera focus events, draw events)
+  MetaLogLevelDebug = 3,
+/// Include things like network requests and transitions
+  MetaLogLevelInfo = 2,
+/// Log warnings
+  MetaLogLevelWarn = 1,
+/// Log errors. Errors soft-crash the framework and exit.
+  MetaLogLevelError = 0,
+};
+
+/// Rendering engine to use in experiences. Default is ARKit, unless it is not
+/// supported by the device. You can set this via <code>Meta.settings.setPreferredRenderingEngine(engine:)</code>
+typedef SWIFT_ENUM(NSInteger, MetaRenderingEngine) {
+/// Use ARKit, if available, to render experiences (default, preferred)
+  MetaRenderingEngineArKit = 0,
+/// Use a legacy renderer based on device sensors to render experiences. Use
+/// this engine for older devices, or for situations where ARKit is not ideal,
+/// such as driving, flying, etc.
+  MetaRenderingEngineArSensor = 1,
+};
+
+
 /// Meta renderer settings
 SWIFT_CLASS("_TtC4Meta12MetaSettings")
 @interface MetaSettings : NSObject
+/// Set the preferred rendering engine used in experiences. Note that if
+/// the current device does not support ARKit, this value is ignored.
+/// \param engine The desired rendering engine to use
+///
++ (void)setPreferredRenderingEngineWithEngine:(enum MetaRenderingEngine)engine;
+/// Get the preferred rendering engine used in experiences. Note that if
+/// the current device does not support ARKit, any user preferece is
+/// ignored.
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum MetaRenderingEngine renderingEngine;)
++ (enum MetaRenderingEngine)renderingEngine SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
