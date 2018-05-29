@@ -1,48 +1,42 @@
 PODS:
-  - Alamofire (4.6.0)
-  - AWSCore (2.6.12)
-  - AWSS3 (2.6.12):
-    - AWSCore (= 2.6.12)
-  - GoogleToolboxForMac/Defines (2.1.3)
-  - GoogleToolboxForMac/Logger (2.1.3):
-    - GoogleToolboxForMac/Defines (= 2.1.3)
-  - GTMSessionFetcher/Core (1.1.13)
+  - Alamofire (4.7.2)
+  - GoogleToolboxForMac/Defines (2.1.4)
+  - GoogleToolboxForMac/Logger (2.1.4):
+    - GoogleToolboxForMac/Defines (= 2.1.4)
+  - GTMSessionFetcher/Core (1.1.15)
   - GVRSDK-Wrapper (0.0.9):
     - GoogleToolboxForMac/Logger
     - GTMSessionFetcher/Core
   - iCarousel (1.8.3)
-  - Kingfisher (4.6.2)
-  - Meta (0.0.4):
+  - Kingfisher (4.8.0)
+  - Meta (0.0.30):
     - Alamofire (~> 4.0)
-    - AWSS3
     - GVRSDK-Wrapper
     - iCarousel
     - Kingfisher (~> 4.0)
     - SwiftyJSON
     - XCDYouTubeKit (~> 2.5)
-    - ZCAnimatedLabel
+    - ZCAnimatedLabelMeta
     - Zip
-  - SwiftyJSON (4.0.0)
+  - SwiftyJSON (4.1.0)
   - XCDYouTubeKit (2.5.6)
-  - ZCAnimatedLabel (0.0.4)
+  - ZCAnimatedLabelMeta (0.0.5)
   - Zip (1.1.0)
 
 DEPENDENCIES:
   - Meta
 
 SPEC CHECKSUMS:
-  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
-  AWSCore: d0d6e4f6831754aaf98058d2306a016ae71510fe
-  AWSS3: c35608e0cdd5172f9e1d943221fd5fde01c5f749
-  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
-  GTMSessionFetcher: 5bb1eae636127de695590f50e7d248483eb891e6
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
+  GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
   GVRSDK-Wrapper: 3fd693ecc7cf31ebda1f3e88b3f65d62ac6713ca
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
-  Kingfisher: 55b9c395bf8d3949676ad3861111923990ab68cf
-  Meta: 9d3d1d3adc78c4c6057e30d9344159db3d45f716
-  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
+  Meta: cbf176e9f345e491f94dc24a393f01c92e1d6213
+  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   XCDYouTubeKit: dccfe0c17dd5c5187969ec27e93069573badb08f
-  ZCAnimatedLabel: 519b688bef4403fd356bc785f9b61cdfd8e6472d
+  ZCAnimatedLabelMeta: 2088476ee25bb56f5944dfe8572e144900eefbe2
   Zip: 8877eede3dda76bcac281225c20e71c25270774c
 
 PODFILE CHECKSUM: b140208d4a967509acd57e58156abc830f1d36e6
