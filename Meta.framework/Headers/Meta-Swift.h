@@ -296,6 +296,15 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) BOOL arKitIsSupporte
 /// This can be any unique string, like a UUID, username, or phone number.
 ///
 - (void)identifyWithUser:(NSString * _Nonnull)id;
+/// If your user’s token changes and you want to preserve their Metaverse
+/// session, this method allows you to update their token without creating
+/// a new session.
+/// \param oldUser The old token used to identify the user
+///
+/// \param newUser The new token that should be used to identify the
+/// user in the future
+///
+- (void)mergeIdentitiesWithOldUser:(NSString * _Nonnull)old newUser:(NSString * _Nonnull)new_;
 /// Present a Metaverse experience. Metaverse experiences are presented on the
 /// application’s current UIWindow, and removed from that window when they are
 /// completed or closed. You should not draw, or attempt to draw, content above
