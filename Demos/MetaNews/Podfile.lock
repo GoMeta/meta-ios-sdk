@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.7.2)
+  - Alamofire (4.7.3)
   - GoogleToolboxForMac/Defines (2.1.4)
   - GoogleToolboxForMac/Logger (2.1.4):
     - GoogleToolboxForMac/Defines (= 2.1.4)
@@ -9,36 +9,47 @@ PODS:
     - GTMSessionFetcher/Core
   - iCarousel (1.8.3)
   - Kingfisher (4.8.0)
-  - Meta (0.0.30):
+  - Meta (0.0.40):
     - Alamofire (~> 4.0)
     - GVRSDK-Wrapper
     - iCarousel
     - Kingfisher (~> 4.0)
     - SwiftyJSON
     - XCDYouTubeKit (~> 2.5)
-    - ZCAnimatedLabelMeta
     - Zip
   - SwiftyJSON (4.1.0)
   - XCDYouTubeKit (2.5.6)
-  - ZCAnimatedLabelMeta (0.0.5)
   - Zip (1.1.0)
 
 DEPENDENCIES:
   - Meta
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - GoogleToolboxForMac
+    - GTMSessionFetcher
+    - iCarousel
+    - Kingfisher
+    - SwiftyJSON
+    - XCDYouTubeKit
+    - Zip
+  https://github.com/GoMeta/meta-ios-pods:
+    - GVRSDK-Wrapper
+    - Meta
+
 SPEC CHECKSUMS:
-  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
   GVRSDK-Wrapper: 3fd693ecc7cf31ebda1f3e88b3f65d62ac6713ca
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
-  Meta: cbf176e9f345e491f94dc24a393f01c92e1d6213
+  Meta: 2688170b7569efc362726493eb41c9901cbb783b
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   XCDYouTubeKit: dccfe0c17dd5c5187969ec27e93069573badb08f
-  ZCAnimatedLabelMeta: 2088476ee25bb56f5944dfe8572e144900eefbe2
   Zip: 8877eede3dda76bcac281225c20e71c25270774c
 
 PODFILE CHECKSUM: b140208d4a967509acd57e58156abc830f1d36e6
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3
