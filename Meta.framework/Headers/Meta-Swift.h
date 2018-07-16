@@ -316,8 +316,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) BOOL arKitIsSupporte
 @end
 
 
-
-
 /// Framework configuration object
 SWIFT_CLASS("_TtC4Meta23MetaConfigurationObject")
 @interface MetaConfigurationObject : NSObject
@@ -341,6 +339,7 @@ SWIFT_CLASS("_TtC4Meta14MetaExperience")
 /// \param id The ID of the experience to load
 ///
 - (nonnull instancetype)initWithId:(NSString * _Nonnull)id OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithId:(NSString * _Nonnull)id enablePrefetching:(BOOL)enablePrefetching OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
 @end
@@ -409,6 +408,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum MetaRenderingEn
 + (enum MetaRenderingEngine)renderingEngine SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
+
+
 
 
 
