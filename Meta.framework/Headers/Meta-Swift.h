@@ -220,6 +220,22 @@ SWIFT_CLASS("_TtC4Meta32CHTCollectionViewWaterfallLayout")
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds SWIFT_WARN_UNUSED_RESULT;
 @end
 
+
+SWIFT_CLASS("_TtC4Meta14ExperienceView")
+@interface ExperienceView : UIView
+- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
+- (void)layoutSubviews;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+
+
+
+
+
+
+
 enum MetaLogLevel : NSInteger;
 @class MetaConfigurationObject;
 @class MetaExperience;
@@ -258,6 +274,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) Meta * _Nonn
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class) enum MetaLogLevel logLevel;)
 + (enum MetaLogLevel)logLevel SWIFT_WARN_UNUSED_RESULT;
 + (void)setLogLevel:(enum MetaLogLevel)newValue;
+/// Set whether experience is being presenting fullscreen or in a view
+@property (nonatomic) BOOL isFullscreen;
 /// Return whether or not ARKit is supported on the current device
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) BOOL arKitIsSupported;)
 + (BOOL)arKitIsSupported SWIFT_WARN_UNUSED_RESULT;
@@ -328,6 +346,7 @@ SWIFT_CLASS("_TtC4Meta23MetaConfigurationObject")
 /// Meta.shared.present(experience:) to present an experience.
 SWIFT_CLASS("_TtC4Meta14MetaExperience")
 @interface MetaExperience : NSObject
+@property (nonatomic, readonly, strong) UIView * _Nonnull view;
 /// The MetaExperienceDelegate that receives experience events
 @property (nonatomic, weak) id <MetaExperienceDelegate> _Nullable delegate;
 /// Initialize a new experience to load by its ID. The experience ID is a uuid
@@ -338,10 +357,12 @@ SWIFT_CLASS("_TtC4Meta14MetaExperience")
 /// (https://mtvrs.io/TriangularFlippantHorse) to load experiences.
 /// \param id The ID of the experience to load
 ///
-- (nonnull instancetype)initWithId:(NSString * _Nonnull)id OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithId:(NSString * _Nonnull)id enablePrefetching:(BOOL)enablePrefetching OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-+ (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithId:(NSString * _Nonnull)id enablePrefetching:(BOOL)enablePrefetching;
+- (void)loadWithId:(NSString * _Nonnull)id enablePrefetching:(BOOL)enablePrefetching;
+- (void)willAppear;
+- (void)willDisappear;
+- (void)willPresent;
 @end
 
 /// Reason why the experience closed
