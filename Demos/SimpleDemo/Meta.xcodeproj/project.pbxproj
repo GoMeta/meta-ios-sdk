@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14144D1B213072AB0052B40D /* InlineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14144D1A213072AB0052B40D /* InlineViewController.swift */; };
 		14B44EF92031570400EF2F54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14B44EF82031570400EF2F54 /* Main.storyboard */; };
 		14B44EFB2031583E00EF2F54 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B44EFA2031583E00EF2F54 /* LaunchScreen.xib */; };
 		14C3B4BE20301AF500CE2CAA /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14C3B4BD20301AF500CE2CAA /* AssetsLibrary.framework */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14144D1A213072AB0052B40D /* InlineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineViewController.swift; sourceTree = "<group>"; };
 		14B44EF82031570400EF2F54 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		14B44EFA2031583E00EF2F54 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		14C3B4BD20301AF500CE2CAA /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -129,6 +131,7 @@
 				14B44EF82031570400EF2F54 /* Main.storyboard */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				14144D1A213072AB0052B40D /* InlineViewController.swift */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
@@ -296,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				14144D1B213072AB0052B40D /* InlineViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
