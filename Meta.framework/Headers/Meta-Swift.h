@@ -351,6 +351,7 @@ SWIFT_CLASS("_TtC4Meta14MetaExperience")
 @property (nonatomic, weak) id <MetaExperienceDelegate> _Nullable delegate;
 /// Content insets for the experience (useful when overlaying toolbars or other controls on the experience)
 @property (nonatomic) UIEdgeInsets contentInset;
+@property (nonatomic) BOOL isScrollEnabled;
 /// Initialize a new experience to load by its ID. The experience ID is a uuid
 /// that can be found when viewing an experience in Metaverse Studio (e.g., for
 /// an experience with the URL <code>https://studio.gometa.io/discover/me/cff4fbc6-f489-4781-a1db-03e37069b206</code>,
