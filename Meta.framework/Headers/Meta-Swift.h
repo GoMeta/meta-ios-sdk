@@ -392,7 +392,7 @@ SWIFT_PROTOCOL("_TtP4Meta22MetaExperienceDelegate_")
 ///
 - (void)metaExperienceDidCloseWithReason:(enum MetaExperienceCloseReason)reason responseData:(id _Nullable)responseData;
 /// The experience received data to pass back to the client
-- (void)metaExperienceDidReceiveResponseDataWithResponseData:(id _Nullable)responseData;
+- (void)metaExperienceDidFinishWithResponseData:(id _Nullable)responseData;
 @end
 
 /// Logging level. Default is error.
