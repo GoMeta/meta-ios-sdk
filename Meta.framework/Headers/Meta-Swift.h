@@ -387,7 +387,9 @@ SWIFT_PROTOCOL("_TtP4Meta22MetaExperienceDelegate_")
 /// \param reason The reason the experience was closed. See definition
 /// for MetaExperienceCloseReason for possible values.
 ///
-- (void)metaExperienceDidCloseWithReason:(enum MetaExperienceCloseReason)reason;
+- (void)metaExperienceDidCloseWithReason:(enum MetaExperienceCloseReason)reason responseData:(id _Nullable)responseData;
+/// The experience received data to pass back to the client
+- (void)metaExperienceDidReceiveResponseDataWithResponseData:(id _Nullable)responseData;
 @end
 
 /// Logging level. Default is error.
