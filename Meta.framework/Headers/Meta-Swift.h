@@ -383,6 +383,7 @@ typedef SWIFT_ENUM(NSInteger, MetaExperienceCloseReason) {
 /// experience.
 SWIFT_PROTOCOL("_TtP4Meta22MetaExperienceDelegate_")
 @protocol MetaExperienceDelegate
+@optional
 /// Experience did close.
 /// \param reason The reason the experience was closed. See definition
 /// for MetaExperienceCloseReason for possible values.
