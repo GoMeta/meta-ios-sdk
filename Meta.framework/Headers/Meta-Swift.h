@@ -239,6 +239,7 @@ SWIFT_CLASS("_TtC4Meta14ExperienceView")
 enum MetaLogLevel : NSInteger;
 @class MetaConfigurationObject;
 @class MetaExperience;
+@class MetaExperienceMetadata;
 
 /// Class for creating and presenting Metaverse experiences.
 /// Follow the following steps to present a Metaverse experience using this
@@ -326,10 +327,17 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) BOOL arKitIsSupporte
 /// Present a Metaverse experience. Metaverse experiences are presented on the
 /// application’s current UIWindow, and removed from that window when they are
 /// completed or closed. You should not draw, or attempt to draw, content above
-/// the experience view.
+/// the experience view when it is presented in fullscreen. To present an
+/// experience inline, use the <code>view</code> property on the <code>MetaExperience</code> object
+/// in conjunction with <code>MetaExperience.willAppear</code> and <code>.willDisappear</code>
 /// \param experience The Metaverse experience object
 ///
 - (void)presentWithExperience:(MetaExperience * _Nonnull)experience;
+/// Load metadata about an experience. This is useful for creating a catalogue
+/// of experiences, or when dynamically loading experiences.
+/// \param experienceId The ID of the experience to load
+///
+- (void)loadMetadataWithExperienceId:(NSString * _Nonnull)experienceId callback:(void (^ _Nonnull)(NSError * _Nullable, MetaExperienceMetadata * _Nullable))callback;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
@@ -351,6 +359,8 @@ SWIFT_CLASS("_TtC4Meta14MetaExperience")
 @property (nonatomic, weak) id <MetaExperienceDelegate> _Nullable delegate;
 /// Content insets for the experience (useful when overlaying toolbars or other controls on the experience)
 @property (nonatomic) UIEdgeInsets contentInset;
+/// Set whether or not the experience is allowed to scroll. When false, scenes that scroll (walls, webviews, etc) show
+/// an overlay button and open fullscreen on the device window.
 @property (nonatomic) BOOL isScrollEnabled;
 /// Initialize a new experience to load by its ID. The experience ID is a uuid
 /// that can be found when viewing an experience in Metaverse Studio (e.g., for
@@ -394,6 +404,17 @@ SWIFT_PROTOCOL("_TtP4Meta22MetaExperienceDelegate_")
 - (void)metaExperienceDidCloseWithReason:(enum MetaExperienceCloseReason)reason responseData:(id _Nullable)responseData;
 /// The experience received data to pass back to the client
 - (void)metaExperienceDidFinishWithResponseData:(id _Nullable)responseData;
+@end
+
+
+SWIFT_CLASS("_TtC4Meta22MetaExperienceMetadata")
+@interface MetaExperienceMetadata : NSObject
+@property (nonatomic, readonly, copy) NSString * _Nonnull id;
+@property (nonatomic, readonly, copy) NSString * _Nonnull name;
+@property (nonatomic, readonly, copy) NSString * _Nullable thumbnailUrl;
+@property (nonatomic, readonly, copy) NSString * _Nullable backgroundImageUrl;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
 @end
 
 /// Logging level. Default is error.
